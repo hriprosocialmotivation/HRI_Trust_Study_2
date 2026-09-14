@@ -38,17 +38,6 @@ const SETTINGS = [
 ];
 
 /* -------------------------------------------------------------------------
-   STUDY 1 conditions - motivational autonomy (preprogrammed / cost-benefit /
-   empathy-driven). Internal ids are recorded in the data but NEVER shown
-   to participants, to avoid tipping them off to the manipulation.
-   ---------------------------------------------------------------------- */
-const STUDY1_CONDITIONS = [
-  { id: 'preprogrammed' },
-  { id: 'costbenefit'   },
-  { id: 'empathy'       }
-];
-
-/* -------------------------------------------------------------------------
    STUDY 2 conditions - motivational orientation (altruistic / egoistic).
    ---------------------------------------------------------------------- */
 const STUDY2_CONDITIONS = [
@@ -59,8 +48,7 @@ const STUDY2_CONDITIONS = [
 /* -------------------------------------------------------------------------
    VIDEO FILES (Google Drive)
    Condition mapping confirmed with the researcher:
-     study1_condition1 = preprogrammed, condition2 = cost-benefit, condition3 = empathy
-     study2_condition1 = altruistic,    condition2 = egoistic
+     study2_condition1 = altruistic, condition2 = egoistic
 
    Videos are embedded via Google Drive's own preview player (an iframe),
    since Drive's direct-download link does not reliably serve raw video
@@ -76,18 +64,6 @@ const VIDEO_FILES = {
   context: {
     social_care: driveVideoUrl('1X6UYIpS6-mSna1Acj3CePO4feTI9uXCi'), // context_companion_robot
     industrial:  driveVideoUrl('1Dqg9ag-H17_WUmW2C4_lmhwnN3Cmjh0x')  // construction_context_video
-  },
-  study1: {
-    social_care: {
-      preprogrammed: driveVideoUrl('1nBmuEWeIeqNU7SKor2eShyuvsU0IayJe'), // study1_condition1_companion_robot
-      costbenefit:   driveVideoUrl('1ca8oX76dx_cl2jnVWWvDHOAveEhM5JNB'), // study1_condition2_companion_robot
-      empathy:       driveVideoUrl('1OASxHZdpegi8gp2wQnau4jFZnptQklAw')  // study1_condition3_companion_robot
-    },
-    industrial: {
-      preprogrammed: driveVideoUrl('15avpumsAk8OrKL_vbs0335ECUhYHaCUK'), // study1_condition1_construction_robot
-      costbenefit:   driveVideoUrl('1-GBRYXg41UBjRQ_X-24e83eCwHEl2UZs'), // study1_condition2_constrcution_robot (typo in original filename)
-      empathy:       driveVideoUrl('1NuMQvukXD8-BFvVc6wdh300Z3v8l7nx7')  // study1_condition3_constrcution_robot (typo in original filename)
-    }
   },
   study2: {
     social_care: {
@@ -147,19 +123,6 @@ const DEMOGRAPHIC_FIELDS = [
      - Perceived Altruism & Egoism: STUDY 2 ONLY (manipulation check for orientation)
    ---------------------------------------------------------------------- */
 const QUESTION_SECTIONS = [
-     {
-    id: 'motivation',
-    title: "Perceived Motivation for Helping. Based on the robot's DIALOGUE In This Video, select the reason why the robot helped.",
-    studies: [1],
-    items: [
-      { id: 'Int2', text: "The robot helped because it wanted to avoid feeling bad about itself." },
-      { id: 'Ex1', text: "The robot helped because helping is a pre-defined rule it has to follow." },
-      { id: 'Ide2', text: "The robot helped because helping others fits its own value." },
-      { id: 'Ide1', text: "The robot helped because it thinks it's important to give help when it's needed." },
-      { id: 'Ex2', text: "The robot helped because it was told to, not because it chose to." },
-      { id: 'Int1', text: "The robot helped because it would feel bad if it didn't help." }
-    ]
-  },
   {
     id: 'altruism_egoism',
     title: "Perceived Altruism & Egoism. Based on the robot's DIALOGUE In This Video, select the reason why the robot helped.",
@@ -176,7 +139,7 @@ const QUESTION_SECTIONS = [
   {
     id: 'trust_interaction',
     title: 'Trust & Continued Interaction. Please respond based on your honest feelings.',
-    studies: [1, 2],
+    studies: [2],
     items: [
       { id: 'ti1', text: 'I would be willing to accept help from this robot.' },
       { id: 'ti2', text: "I would feel comfortable relying on this robot's assistance." },
@@ -188,7 +151,7 @@ const QUESTION_SECTIONS = [
   {
     id: 'abi',
     title: 'Ability. Please respond based on your honest feelings.',
-    studies: [1, 2],
+    studies: [2],
     items: [
       { id: 'ab1', text: 'The robot is very capable of performing its job.' },
       { id: 'ab2', text: 'The robot is known to be successful at the things it tries to do.' },
@@ -201,7 +164,7 @@ const QUESTION_SECTIONS = [
      {
     id: 'ben',
     title: 'Benevolence. Please respond based on your honest feelings.',
-    studies: [1, 2],
+    studies: [2],
     items: [
       { id: 'bv1', text: 'The robot is very concerned about my welfare.' },
       { id: 'bv2', text: 'My needs and desires are very important to the robot.' },
@@ -213,7 +176,7 @@ const QUESTION_SECTIONS = [
    {
     id: 'int',
     title: 'Integrity. Please respond based on your honest feelings.',
-    studies: [1, 2],
+    studies: [2],
     items: [
       { id: 'in1', text: 'The robot has a strong sense of justice.' },
       { id: 'in2', text: 'I never have to wonder whether the robot will stick to its word.' },
@@ -256,14 +219,15 @@ const FINAL_QUESTIONS = {
 
 /* -------------------------------------------------------------------------
    ATTENTION CHECKS
-   Shown once per setting, ONLY on the Study 1 "empathy" trial for that
-   setting (i.e. study === 1 && condition.id === 'empathy'). Participants
+   Shown once per setting, ONLY on the Study 2 "altruistic" trial for that
+   setting (i.e. study === 2 && condition.id === 'altruistic'). Participants
    pick which of three descriptions matches what they just watched.
 
    IMPORTANT: `correct` must be set to whichever option value (1, 2, or 3)
-   actually matches the footage for that setting's empathy-condition video.
-   The values below are placeholders - verify against the real clips before
-   launching.
+   actually matches the footage for that setting's altruistic-condition
+   video. The values below are carried over from the old empathy-condition
+   placeholders and have NOT been verified against the altruistic clips -
+   check them against the real footage before launching.
    ---------------------------------------------------------------------- */
 const ATTENTION_CHECKS = {
   social_care: {
@@ -273,7 +237,7 @@ const ATTENTION_CHECKS = {
       { value: 2, text: 'The robot invited you to play badminton.' },
       { value: 3, text: 'Neither of the above.' }
     ],
-    correct: 1 // TODO: confirm against the actual social-care empathy-condition video
+    correct: 1 // TODO: confirm against the actual social-care altruistic-condition video
   },
   industrial: {
     question: 'What happened in the video you watched?',
@@ -282,14 +246,14 @@ const ATTENTION_CHECKS = {
       { value: 2, text: 'The robot passed a bag of tools to help you.' },
       { value: 3, text: 'The robot asked for your assistance.' }
     ],
-    correct: 2 // TODO: confirm against the actual industrial empathy-condition video
+    correct: 2 // TODO: confirm against the actual industrial altruistic-condition video
   }
 };
 
 // Returns the attention check for this trial, or null if this trial
 // (study/condition) shouldn't have one.
 function attentionCheckFor(study, settingId, conditionId) {
-  if (study !== 1 || conditionId !== 'empathy') return null;
+  if (study !== 2 || conditionId !== 'altruistic') return null;
   return ATTENTION_CHECKS[settingId] || null;
 }
 
