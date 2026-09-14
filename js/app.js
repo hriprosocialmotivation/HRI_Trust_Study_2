@@ -40,9 +40,6 @@ function buildSequence() {
   const seq = [];
   settingOrder.forEach(setting => {
     seq.push({ type: 'context', setting });
-    shuffle(STUDY1_CONDITIONS).forEach(cond => {
-      seq.push({ type: 'trial', study: 1, setting, condition: cond });
-    });
     shuffle(STUDY2_CONDITIONS).forEach(cond => {
       seq.push({ type: 'trial', study: 2, setting, condition: cond });
     });
