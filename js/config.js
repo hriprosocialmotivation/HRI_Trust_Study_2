@@ -20,7 +20,7 @@ const CONFIG = {
     honest impressions.`,
 
   CONSENT_TEXT: `The research team reserves the right to withdraw participants from the study, 
-  reject their submissions, exclude their responses from analysis, and withhold compensation if they fail two or more attention-check 
+  reject their submissions, exclude their responses from analysis, and withhold compensation if they fail attention-check 
   questions, provide low-quality responses, or falsify their identity to meet eligibility criteria. 
   By clicking "I agree" you confirm that you are 18 years of
     age or older, that you have read the participant information, and that
